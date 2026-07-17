@@ -60,7 +60,7 @@ export default function HomeScreen({ onJoinRoom }: HomeScreenProps) {
           maxLength={20}
         />
 
-        <button onClick={handleCreate} disabled={loading || !playerName.trim()}>
+        <button className="btn-create" onClick={handleCreate} disabled={loading || !playerName.trim()}>
           {loading ? "Creando..." : "Crear Sala"}
         </button>
 
@@ -74,7 +74,7 @@ export default function HomeScreen({ onJoinRoom }: HomeScreenProps) {
           maxLength={6}
         />
 
-        <button onClick={handleJoin} disabled={loading || !playerName.trim() || !roomCode.trim()}>
+        <button className="btn-join" onClick={handleJoin} disabled={loading || !playerName.trim() || !roomCode.trim()}>
           {loading ? "Buscando..." : "Unirse"}
         </button>
 

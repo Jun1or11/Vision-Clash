@@ -11,10 +11,7 @@
 .title {
   font-size: 3rem;
   font-weight: 700;
-  background: linear-gradient(135deg, #e94560, #4ecca3);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
+  color: #a855f7;
   margin-bottom: 0.5rem;
 }
 
@@ -52,7 +49,6 @@
 }
 
 .home-card button {
-  background: var(--accent);
   color: white;
   border: none;
   border-radius: 8px;
@@ -61,6 +57,14 @@
   font-weight: 600;
   cursor: pointer;
   transition: opacity 0.2s;
+}
+
+.btn-create {
+  background: #00d4aa;
+}
+
+.btn-join {
+  background: #ff3366;
 }
 
 .home-card button:disabled {
