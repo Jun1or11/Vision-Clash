@@ -1,7 +1,8 @@
 import { useCallback, useEffect, useRef, useState } from "react"
 import type { GameState, ServerMessage } from "../types"
 
-const WS_URL = import.meta.env.VITE_WS_URL || "ws://localhost:8000/ws/game"
+const API_URL = import.meta.env.VITE_API_URL || "http://localhost:8000"
+const WS_URL = API_URL.replace(/^http/, "ws") + "/ws/game"
 
 interface UseWebSocketReturn {
   connected: boolean
