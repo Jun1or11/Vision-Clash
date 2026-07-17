@@ -10,12 +10,15 @@ export default function HomeScreen({ onJoinRoom }: HomeScreenProps) {
   const [loading, setLoading] = useState(false)
   const [error, setError] = useState("")
 
+  const API_URL =
+    import.meta.env.VITE_WS_URL?.replace("/ws/game", "") || "http://localhost:8000"
+
   const handleCreate = async () => {
     if (!playerName.trim()) return
     setLoading(true)
     setError("")
     try {
-      const res = await fetch("http://localhost:8000/rooms", { method: "POST" })
+      const res = await fetch(`${API_URL}/rooms`, { method: "POST" })
       const data = await res.json()
       onJoinRoom(data.room_id, playerName.trim())
     } catch {
@@ -30,7 +33,7 @@ export default function HomeScreen({ onJoinRoom }: HomeScreenProps) {
     setLoading(true)
     setError("")
     try {
-      const res = await fetch(`http://localhost:8000/rooms/${roomCode.trim().toUpperCase()}`)
+      const res = await fetch(`${API_URL}/rooms/${roomCode.trim().toUpperCase()}`)
       if (!res.ok) {
         setError("Sala no encontrada")
         return
