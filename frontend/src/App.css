@@ -11,7 +11,7 @@
 .title {
   font-size: 3rem;
   font-weight: 700;
-  color: #a855f7;
+  color: #64239d;
   margin-bottom: 0.5rem;
 }
 
@@ -60,11 +60,11 @@
 }
 
 .btn-create {
-  background: #00d4aa;
+  background: #019aa8;
 }
 
 .btn-join {
-  background: #ff3366;
+  background: #de2553;
 }
 
 .home-card button:disabled {
@@ -170,8 +170,8 @@
   width: 100%;
   text-align: center;
   font-size: 0.85rem;
-  color: white;
-  background: #0891b2;
+  color: var(--text);
+  background: var(--bg-panel);
   padding: 0.5rem;
   font-weight: 600;
 }
@@ -214,8 +214,8 @@
 .circle {
   position: absolute;
   border-radius: 50%;
-  border: 2px solid #666;
-  background: #0891b2;
+  border: 2px solid #024980;
+  background: #02416672;
   color: var(--text);
   font-weight: 700;
   cursor: pointer;
@@ -230,8 +230,8 @@
 
 @media (hover: hover) {
   .circle:hover {
-    border-color: var(--accent);
-    background: rgba(233, 69, 96, 0.2);
+    border-color: #a855f7;
+    background: rgba(124, 58, 237, 0.2);
     transform: translate(-50%, -50%) scale(1.1);
   }
 }
