@@ -6,15 +6,15 @@
 
 :root {
   --bg: #0f0f0f;
-  --bg-card: #1a1a2e;
-  --bg-panel: #16213e;
+  --bg-card: #1e1e1e;
+  --bg-panel: #2a2a2a;
   --text: #e0e0e0;
   --text-dim: #888;
   --accent: #e94560;
-  --accent2: #0f3460;
+  --accent2: #444;
   --success: #4ecca3;
   --danger: #ff6b6b;
-  --border: #2a2a4a;
+  --border: #333;
 }
 
 body {
