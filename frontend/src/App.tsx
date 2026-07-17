@@ -7,7 +7,7 @@ import "./App.css"
 export default function App() {
   const [roomId, setRoomId] = useState<string | null>(null)
   const [playerName, setPlayerName] = useState("")
-  const { connected, gameState, playerId, roomCode, error, sendMessage } = useWebSocket(
+  const { connected, gameState, playerId, roomCode, error, sendMessage, rematchReady } = useWebSocket(
     roomId,
     playerName
   )
@@ -47,6 +47,7 @@ export default function App() {
       state={gameState}
       playerId={playerId}
       sendMessage={sendMessage}
+      rematchReady={rematchReady}
     />
   )
 }

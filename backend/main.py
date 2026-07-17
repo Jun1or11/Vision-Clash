@@ -123,6 +123,34 @@ async def handle_message(room, player_id: str, data: dict, room_id: str):
                     "payload": {"state": room.state.model_dump()}
                 })
 
+    elif msg_type == "request_rematch":
+        if room.state.status != "finished":
+            return
+        if player_id not in room.state.rematch_ready:
+            room.state.rematch_ready.append(player_id)
+        await broadcast(room_id, {
+            "type": "rematch_update",
+            "payload": {"rematch_ready": list(room.state.rematch_ready)}
+        })
+        if len(room.state.rematch_ready) == 2:
+            import random
+            room.state.rematch_ready.clear()
+            players_list = list(room.state.players.values())
+            random.shuffle(players_list)
+            players_list[0].role = "number_seeker"
+            players_list[1].role = "letter_seeker"
+            for p in room.state.players.values():
+                p.score = 0
+            room.state.status = "playing"
+            room.state.time_left = TIMER_SECONDS
+            room.state.round = 0
+            generate_round(room.state)
+            await broadcast(room_id, {
+                "type": "game_start",
+                "payload": {"state": room.state.model_dump()}
+            })
+            room_timers[room_id] = asyncio.create_task(game_timer(room_id))
+
 
 @app.post("/rooms")
 async def create_room():

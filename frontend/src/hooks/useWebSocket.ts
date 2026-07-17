@@ -11,6 +11,7 @@ interface UseWebSocketReturn {
   roomCode: string | null
   error: string | null
   sendMessage: (msg: object) => void
+  rematchReady: string[]
 }
 
 export function useWebSocket(roomId: string | null, playerName: string = ""): UseWebSocketReturn {
@@ -21,6 +22,7 @@ export function useWebSocket(roomId: string | null, playerName: string = ""): Us
   const [playerId, setPlayerId] = useState<string | null>(null)
   const [roomCode, setRoomCode] = useState<string | null>(null)
   const [error, setError] = useState<string | null>(null)
+  const [rematchReady, setRematchReady] = useState<string[]>([])
 
   useEffect(() => {
     if (!roomId) return
@@ -57,6 +59,10 @@ export function useWebSocket(roomId: string | null, playerName: string = ""): Us
           case "game_start":
           case "state_update":
             setGameState(data.payload.state as GameState)
+            setRematchReady([])
+            break
+          case "rematch_update":
+            setRematchReady(data.payload.rematch_ready as string[])
             break
           case "game_over":
             setGameState((prev) =>
@@ -95,5 +101,5 @@ export function useWebSocket(roomId: string | null, playerName: string = ""): Us
     }
   }, [])
 
-  return { connected, gameState, playerId, roomCode, error, sendMessage }
+  return { connected, gameState, playerId, roomCode, error, sendMessage, rematchReady }
 }

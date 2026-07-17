@@ -7,9 +7,10 @@ interface GameScreenProps {
   state: GameState
   playerId: string | null
   sendMessage: (msg: object) => void
+  rematchReady: string[]
 }
 
-export default function GameScreen({ state, playerId, sendMessage }: GameScreenProps) {
+export default function GameScreen({ state, playerId, sendMessage, rematchReady }: GameScreenProps) {
   const me = playerId ? state.players[playerId] : null
   if (!me) return null
 
@@ -34,6 +35,28 @@ export default function GameScreen({ state, playerId, sendMessage }: GameScreenP
               </div>
             ))}
           </div>
+
+          <div className="rematch-section">
+            <button
+              className="rematch-btn"
+              onClick={() => sendMessage({ type: "request_rematch" })}
+              disabled={rematchReady.includes(playerId || "")}
+            >
+              {rematchReady.includes(playerId || "") ? "Esperando oponente..." : "Revancha"}
+            </button>
+            {Object.values(state.players).map((p) =>
+              p.id !== playerId && rematchReady.includes(p.id) ? (
+                <p key={p.id} className="rematch-status">
+                  {p.name} está listo ✓
+                </p>
+              ) : p.id !== playerId ? (
+                <p key={p.id} className="rematch-status waiting">
+                  Esperando a {p.name}...
+                </p>
+              ) : null
+            )}
+          </div>
+
           <button className="restart-btn" onClick={() => window.location.reload()}>
             Volver al inicio
           </button>

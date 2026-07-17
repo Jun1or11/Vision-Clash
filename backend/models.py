@@ -30,6 +30,7 @@ class GameState(BaseModel):
     status: Literal["waiting", "playing", "finished"] = "waiting"
     round: int = 0
     winner_id: Optional[str] = None
+    rematch_ready: list[str] = []
 
 
 class GameRoom(BaseModel):

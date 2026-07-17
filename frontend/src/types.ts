@@ -32,6 +32,6 @@ export interface ServerMessage {
 }
 
 export interface ClientMessage {
-  type: "join" | "click_number" | "click_letter"
+  type: "join" | "click_number" | "click_letter" | "request_rematch"
   payload: Record<string, unknown>
 }
